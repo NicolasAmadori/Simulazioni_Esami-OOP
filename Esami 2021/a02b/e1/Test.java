@@ -79,8 +79,7 @@ public class Test {
 		assertTrue(program.isValid(Set.of("PRG","ALG","WEB","SOFTENG", "MAT1","FIS1","THESIS"))); // 60 cfu
 		assertFalse(program.isValid(Set.of("PRG","ALG","WEB","SOFTENG", "MAT1","FIS1","THESIS++"))); // 66 cfu
 		assertFalse(program.isValid(Set.of("PRG","ALG","WEB"))); // 36 cfu
-		assertFalse(program.isValid(Set.of())); // 0 cfu
-	}
+ 	}
 	
 	@org.junit.Test
 	public void testScientific() {

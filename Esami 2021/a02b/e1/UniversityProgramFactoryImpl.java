@@ -11,7 +11,7 @@ public class UniversityProgramFactoryImpl implements UniversityProgramFactory{
 
             @Override
             public boolean isValid(Set<String> courseNames) {
-                return getCreditsSum() == MUST_HAVE_CREDITS;
+                return getCreditsSum(courseNames) == MUST_HAVE_CREDITS;
             }
         };
     }
@@ -26,10 +26,10 @@ public class UniversityProgramFactoryImpl implements UniversityProgramFactory{
 
             @Override
             public boolean isValid(Set<String> courseNames) {
-                return getCreditsSum() == MUST_HAVE_CREDITS
-                    && getSectorCredits(Sector.MATHEMATICS) >= MATHEMATICS_LOWER_BOUND
-                    && getSectorCredits(Sector.COMPUTER_SCIENCE) >= COMPUTER_SCIENCE_LOWER_BOUND
-                    && getSectorCredits(Sector.PHYSICS) >= PHYSICS_LOWER_BOUND;
+                return getCreditsSum(courseNames) == MUST_HAVE_CREDITS
+                    && getSectorCredits(Sector.MATHEMATICS, courseNames) >= MATHEMATICS_LOWER_BOUND
+                    && getSectorCredits(Sector.COMPUTER_SCIENCE, courseNames) >= COMPUTER_SCIENCE_LOWER_BOUND
+                    && getSectorCredits(Sector.PHYSICS, courseNames) >= PHYSICS_LOWER_BOUND;
             }
         };
     }
@@ -42,8 +42,8 @@ public class UniversityProgramFactoryImpl implements UniversityProgramFactory{
 
             @Override
             public boolean isValid(Set<String> courseNames) {
-                return getCreditsSum() >= CREDITS_LOWER_BOUND
-                    && getSectorCredits(Sector.COMPUTER_SCIENCE) + getSectorCredits(Sector.COMPUTER_ENGINEERING) >= COMPUTER_SCIENCE_AND_COMPUTER_ENGINEERING_LOWER_BOUND;
+                return getCreditsSum(courseNames) >= CREDITS_LOWER_BOUND
+                    && getSectorCredits(Sector.COMPUTER_SCIENCE, courseNames) + getSectorCredits(Sector.COMPUTER_ENGINEERING, courseNames) >= COMPUTER_SCIENCE_AND_COMPUTER_ENGINEERING_LOWER_BOUND;
             }
         };
     }
@@ -58,10 +58,10 @@ public class UniversityProgramFactoryImpl implements UniversityProgramFactory{
 
             @Override
             public boolean isValid(Set<String> courseNames) {
-                return getCreditsSum() >= CREDITS_LOWER_BOUND
-                    && getSectorCredits(Sector.COMPUTER_SCIENCE) + getSectorCredits(Sector.COMPUTER_ENGINEERING) >= COMPUTER_SCIENCE_AND_COMPUTER_ENGINEERING_LOWER_BOUND
-                    && getSectorCredits(Sector.MATHEMATICS) + getSectorCredits(Sector.PHYSICS) >= MATH_AND_PHYSICS_LOWER_BOUND
-                    && getSectorCredits(Sector.THESIS) == THESIS_CREDITS;
+                return getCreditsSum(courseNames) >= CREDITS_LOWER_BOUND
+                    && getSectorCredits(Sector.COMPUTER_SCIENCE, courseNames) + getSectorCredits(Sector.COMPUTER_ENGINEERING, courseNames) >= COMPUTER_SCIENCE_AND_COMPUTER_ENGINEERING_LOWER_BOUND
+                    && getSectorCredits(Sector.MATHEMATICS, courseNames) + getSectorCredits(Sector.PHYSICS, courseNames) <= MATH_AND_PHYSICS_LOWER_BOUND
+                    && getSectorCredits(Sector.THESIS, courseNames) == THESIS_CREDITS;
             }
         };
     }

@@ -9,6 +9,7 @@ public abstract class AbstractUniversityProgram implements UniversityProgram{
     private List<Pair<String, Pair<Sector, Integer>>> courses = new ArrayList<>();
     
     protected int getCreditsSum(Set<String> courseNames){
+        if(courseNames.size() == 0) return 0;
         return courses.stream()
         .filter(c -> courseNames.contains(c.get1()))
         .map(p -> p.get2().get2())
@@ -17,6 +18,10 @@ public abstract class AbstractUniversityProgram implements UniversityProgram{
     }
     
     protected int getSectorCredits(Sector s, Set<String> courseNames){
+        if(courses.stream()
+            .filter(c -> courseNames.contains(c.get1()))
+            .filter(p -> p.get2().get1().equals(s)).count() == 0) return 0;
+
         return courses.stream()
             .filter(c -> courseNames.contains(c.get1()))
             .filter(p -> p.get2().get1().equals(s))
