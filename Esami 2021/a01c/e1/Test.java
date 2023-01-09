@@ -50,9 +50,9 @@ public class Test {
 	
 	@org.junit.Before
 	public void initFactory() {
-//		this.factory = new EventHistoryFactoryImpl();
+		this.factory = new EventHistoryFactoryImpl();
 	}
-	
+
 	@org.junit.Test
 	public void testFromMap() {
 		var h = this.factory.fromMap(Map.of(1.0,"uno", 2.0, "due", 3.0, "tre"));
