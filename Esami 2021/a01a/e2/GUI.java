@@ -10,8 +10,11 @@ public class GUI extends JFrame {
     
     private static final long serialVersionUID = -6218820567019985015L;
     private final List<JButton> cells = new ArrayList<>();
-    
+    private int lastIndex = -1;
+    private Logic l;
+
     public GUI(int size) {
+        l = new Logic(size);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(50*size, 50*size);
         
@@ -20,8 +23,18 @@ public class GUI extends JFrame {
         
         ActionListener al = e -> {
         	var button = (JButton)e.getSource();
-        	button.setText(""+cells.indexOf(button));
-        	button.setEnabled(false); 
+            if(lastIndex == -1){
+                lastIndex = cells.indexOf(button);
+                button.setText("" + 1);
+            }
+            else{
+                l.selectCell(cells.indexOf(button), lastIndex);
+                if(l.isOver()){
+                    System.exit(0);
+                }
+                lastIndex = -1;
+            }
+        	button.setEnabled(false);
         };
                 
         for (int i=0; i<size; i++){
@@ -35,4 +48,7 @@ public class GUI extends JFrame {
         this.setVisible(true);
     }
     
+    private void Update(boolean[][] cells){
+
+    }
 }
