@@ -34,7 +34,7 @@ public interface DeterministicParserFactory {
 	 * @param stop
 	 * @param delimiter
 	 * @param element
-	 * @return a parser consuming a sequence with start + element + delimiter + element + delimiter + ... + element + stop
+	 * @return a parser consuming a sequence with start + element + delimiter + nelemet + delimiter + ... + element + stop
 	 * where at least one element is present
 	 * e.g., by this method we could parse the tokenized string "[a;a;a;a]" (see the test)
 	 */
