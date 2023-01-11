@@ -37,7 +37,7 @@ public class LogicImpl implements Logic{
 
         if(last.isEmpty()){
             Random r = new Random();
-            Pair<Integer, Integer> randomCell = new Pair<>(r.nextInt(2, size - 2), r.nextInt(2, size - 2));
+            Pair<Integer, Integer> randomCell = new Pair<>(r.nextInt(size - 4) + 2, r.nextInt(size - 4) + 2);
             last = Optional.of(randomCell);
             selectedCells.add(randomCell);
             return Optional.of(randomCell);
@@ -67,7 +67,7 @@ public class LogicImpl implements Logic{
         
         if (isCellSelected(nextCell) || nextCell.getX() < 0 || nextCell.getX() >= size || nextCell.getY() < 0 || nextCell.getY() >= size){
             nextCell = new Pair<>(last.get().getX() + dir.next().x, last.get().getY() + dir.next().y);
-            return isCellSelected(nextCell) || nextCell.getX() >= 0 || nextCell.getX() < size || nextCell.getY() >= 0 || nextCell.getY() < size;
+            return isCellSelected(nextCell) || nextCell.getX() < 0 || nextCell.getX() >= size || nextCell.getY() < 0 || nextCell.getY() >= size;
         }
         return false;
     }
